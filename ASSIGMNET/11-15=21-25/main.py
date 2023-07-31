@@ -177,12 +177,8 @@ def process_data():
     else:
         tui.display_message("Data processing ws not selected. ")
 
-process_data()
 
-
-
-
-        # Task 21: Check if the user selected the option for visualising data.
+        """#Task 21: Check if the user selected the option for visualising data.
         # If so, then do the following:
         # - Use the appropriate function in the module 'tui' to indicate that the data visualisation operation
         # has started.
@@ -190,14 +186,70 @@ process_data()
         #   - call the appropriate function in the module 'tui' to determine what visualisation is to be done.
         #   - call the appropriate function in the module 'visual' to display the visual
         # - Use the appropriate function in the module 'tui' to display a message to indicate that the
-        # data visualisation operation has completed.
-        # TODO: Your code here
+        # data visualisation operation has completed."""
+
+import json
+from tui import get_export_options, indicate_export_started, indicate_export_completed
+
+class Review:
+    def __init__(self, title, rating, content, country):
+        self.title = title
+        self.rating = rating
+        self.content = content
+        self.country = country
+
+    def to_dict(self):
+        return{
+        "title": self.title,
+        "rating": self.rating,
+        "content": self.content,
+        "country": self.country
+        }
+class ReviewExporter:
+    def __init__(self, reviews):
+        self.reviews = reviews
+
+    def export_all_reviews(self):
+        data = [review.to_dict() for review in self.reviews]
+        self._export_to_json(data)
+
+    def export_reviews_by_country(self, country):
+        filtered_reviews = [review.to_dict() for review in self.reviews if review.coutry == country]
+        self._export_to_json(filtered_reviews)
+
+    def _export_to_json(self, data):
+        with open("reviews_export.json", "w") as file:
+             json.dump(data, file, indent=2)
+
+if __name__ == "__main__":
+
+#reviews_data as a list of Reviews objects
+    reviews_data = [
+        Review("Great Product", 5, "This product exceeded my expectations!", "USA"),
+        Review("Not Recommend", 1, "I had a terrible experience with this product.", "UK"),
+        Review("Awesome!", 4, "This product is fantastic!", "USA"),
+#more reviews
+         ]
+    export_options = get_export_options()
+
+    if export_options:
+        review_exporter = ReviewExporter(reviews_data)
+
+        if export_options == "all":
+            indicate_export_started()
+            review_exporter.export_all_reviews()
+            indicate_export_completed()
+
+        elif export_options == "by_country":
+            selected_country = input("Enter the country for which you want to export review: ")
+            indicate_export_started()
+            review_exporter.export_reviews_by_country(selected_country)
+            indicate_export_completed()
+        else:
+            print("Invalid export option selected. ")
 
 
-
-
-
-        # Task 25: Check if the user selected the option for exporting reviews.  If so, then do the following:
+       """ # Task 25: Check if the user selected the option for exporting reviews.  If so, then do the following:
         # - Use the appropriate function in the module 'tui' to retrieve what reviews are to be exported.
         # - Check what option has been selected
         #
@@ -208,15 +260,80 @@ process_data()
         # To export the reviews, you should demonstrate the application of OOP principles including the concepts of
         # abstraction and inheritance.  You should create suitable classes with appropriate methods.
         # You should use these to write the reviews (either all or only those for a specific country/region) to a JSON file.
-        # TODO: Your code here
+        # TODO: Your code here"""
 
-        # Task 26: Check if the user selected the option for exiting the program.
+def reviews_to_export():
+    pass
+
+class ReviewExporter:
+    def __init__(self, export_option):
+        self.export_option = export_option
+
+    def export_review(self):
+        self._start_export()
+        reviews_to_export() == self._get_reviews_to_export()
+        self._write_reviews_to_json(reviews_to_export)
+        self._end_export()
+
+    def _start_export(self):
+        pass
+
+    def _get_reviews_to_export(self):
+        if self.export_option == 'all':
+            pass
+
+        elif self.export_option == 'specific':
+            pass
+
+    def _write_reviews_to_json(self, reviews):
+        with open('reviews_export.json_file', 'w') as json_file:
+            import json
+            json.dump(reviews, json_file, indent=4)
+
+    def _end_export(self):
+        pass
+
+
+def main():
+    export_options = 'all'
+
+    if export_options:
+        review_exporter = ReviewExporter(export_options)
+        review_exporter.export_review()
+
+
+if __name__ != "__main__":
+    pass
+
+
+        """ # Task 26: Check if the user selected the option for exiting the program.
         # If so, then break out of the loop
-        # TODO: Your code here
+        # TODO: Your code here """
 
-        # Task 27: If the user selected an invalid option then use the appropriate function of the
+while True:
+    print("1. Option 1")
+    print("2. Option 2")
+    print("3. Exit")
+
+    user_input = input("Select an option (1, 2, or 3): ")
+
+    if user_input == '3':
+        print("Existing the program.")
+        break
+
+    if user_input == '1':
+        print("You selected Option 1. ")
+
+    elif user_input == '2':
+        print("You selected Option 2.")
+
+    else:
+        print("Invalid option. Please choose a valid option (1, 2, or 3). ")
+
+
+      """  # Task 27: If the user selected an invalid option then use the appropriate function of the
         # module tui to display an error message
-        # TODO: Your code here
+        # TODO: Your code here"""
 
         pass  # can remove
 
