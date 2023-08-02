@@ -14,6 +14,9 @@ Note:   any user input/output should be done using the appropriate functions in 
 #TODO: Your code here
 
 import csv
+
+from TEST import display_error_message
+
 reviews_data = []
 
 
@@ -65,7 +68,7 @@ import curses
 
 def display_main_menu():
     #TODO: Implement your main menu here
-    #You can usecurse functions to draw text, boxes, buttons, etc.
+    #You can use curse functions to draw text, boxes, buttons, etc.
 
 def main():
 #Initialize curses
@@ -131,6 +134,7 @@ if 'name' == "main":
 
 import tui
 import process
+
 
 def process_data():
     if tui.user_selected_processing_data():
@@ -335,8 +339,31 @@ while True:
         # module tui to display an error message
         # TODO: Your code here"""
 
-        pass  # can remove
+
+def function_option_1():
+    pass
 
 
-if __name__ == "__main__":
-    run()
+def main(stdscr, function_option_1= None, function_option_2= None, function_option_3= None ):
+    valid_options = ['1', '2', '3']
+
+    stdscr.clear()
+    stdscr.addstr("Select an option: \n")
+    stdscr.addstr("1. Option 1\n")
+    stdscr.addstr("2. Option 2\n")
+    stdscr.addstr("3. Option 3\n")
+    stdscr.refresh()
+
+    user_input = stdscr.getch()
+    selected_option = chr(user_input)
+
+    if selected_option in valid_options:
+        if selected_option == "1":
+            function_option_1()
+        elif selected_option == "2":
+            function_option_2()
+        else:
+            function_option_3()
+    else:
+        display_error_message("Invalid option selected!", stdscr)
+

@@ -23,4 +23,50 @@ The required functions are as follows:
     - the average rating on that date
 """
 
-# TODO: Your code here
+def get_total_reviews(reviews):
+    return len(reviews)
+
+def get_review_by_hotel(review):
+    hotel_name = input("Enter the hotel name: ")
+    return [review for review in review if review[1] == hotel_name]
+
+def get_review_by_dates(reviews):
+    start_data = input("Enter the start date (yyyy-mm-dd): ")
+    end_date = input("Enter the end date (yyyy-mm-dd): ")
+    return [review for review in reviews if start_date <= review[2] <= end_date]
+
+def get_reviews_by_nationality(reviews):
+    reviews_by_nationality = {}
+    for review in reviews:
+        nationality = review[3]
+        if nationality in reviews_by_nationality:
+            reviews_by_nationality[nationality].append(review)
+        else:
+            reviews_by_nationality[nationality] = [review]
+    return reviews_by_nationality
+
+def get_reviews_summary(reviews):
+    from collections import defaultdict
+    summary = defaultdict(lambda: {'negative': 0, 'positive': 0, 'total_ratings': 0, 'rating_sum': 0})
+
+    for review in reviews:
+        date = review[2]
+        rating = float(review[4])
+        if rating < 5:
+            summary[date]['negative'] += 1
+        else:
+            summary[date]['positive'] += 1
+
+        summary[date]['total_rating'] += 1
+        summary[date]['rating_sum'] += rating
+
+    sorted_dates = sorted(summary.keys())
+    result = []
+    for date in sorted_dates:
+        total_neg = summary[date]['negative']
+        total_pos = summary[date]['positive']
+        total_ratings = summary[date]['total_rating']
+        average_rating = summary[date]['rating_sum'] / total_ratings if total_ratings > 0 else 0.0
+        result.append((date, total_neg, total_pos, average_rating))
+
+    return result
