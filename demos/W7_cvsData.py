@@ -23,4 +23,5 @@ def graph():
     x, y = retrieve_data()
     plt.plot(x, y, "b^-")
     plt.show()
+gather_data(2)
 graph()

@@ -1,17 +1,16 @@
-def display_progress(value):
-    if value == 0:
-        status = "initiated"
-    elif 0 < value < 100:
-        status = "initiated"
-    elif value == 100:
-        status = "completed"
-    else:
-        raise ValueError("Invalid value: progress valueshould be between 0 and 100")
+import matplotlib.pyplot as plt
 
-        f"Operation: {operation} [{status}]."
-    print(message)
+def display(x_values, y_values):
+    plt.plot(x_values, y_values, marker='o')
+    plt.title('Path of Beep and Bop')
+    plt.xlabel('X Values')
+    plt.ylabel('Y Values')
+    plt.grid(True)
+    plt.show()
 
+def run():
+    x_values = [1, 2, 3, 4, 5]
+    y_values = [1, 4, 9, 16, 25]
+    display(x_values, y_values)
 
-display_progress("File Upload", 0)
-display_progress("Data Processing", 50)
-display_progress("Task Completed", 100)
+run()
