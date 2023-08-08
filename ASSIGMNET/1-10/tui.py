@@ -19,22 +19,20 @@ def welcome():
 
     :return: Does not return anything.
     """
-    # TODO:
 
 def display_welcome_message(title):
-#Calculate number of asrerisks needed
+    # Calculate number of asrerisks needed
     num_asterisks = len(title)
-#Welcome message
-welcome_message = f"* {title} *"
-#Line of asterisks
-asterisks_line = "*" * (num_asterisks + 4)
-#Display the welcome message
-print(asterisks_line)
+
+# Welcome message
+welcome_message = ("Hotel Review")
+# Line of asterisks
+# asterisks_line = "*" * (num_asterisks + 4)
+# Display the welcome message
+print("*" * 20)
 print(welcome_message)
-print(asterisks_line)
-
+print("*" * 20)
 display_welcome_message("Hotel Reviews")
-
 
 #Task 2: Display an error message.
 """
@@ -79,7 +77,7 @@ def display_progress(value):
     else:
         raise ValueError("Invalid value: progress valueshould be between 0 and 100")
 
-    message = f"Operation: {operation} [{status}]."
+        f"Operation: {operation} [{status}]."
     print(message)
 
 display_progress("File Upload", 0)
@@ -353,9 +351,7 @@ display_review(review)
 
     :param reviews: A list of reviews
     :param cols: A list of integer values that represent column indexes
-    :return: Does not return anything
-"""
-    # TODO: Your code here
+    :return: Does not return anything """
 
 def display_reviews(reviews, cols = None):
     for review in reviews:
